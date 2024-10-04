@@ -10,6 +10,11 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+    - name: Install Octopus CLI 🐙
+      uses: OctopusDeploy/install-octopus-cli-action@v3
+      with:
+        version: '*'
+
     - name: Checkout code
       uses: actions/checkout@v4
       with:
