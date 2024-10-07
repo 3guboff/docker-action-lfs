@@ -15,6 +15,25 @@ jobs:
       with:
         version: '*'
 
+    - name: Setup AutoChangelog
+      run: npm install -g auto-changelog
+
+    - name: Setup AutoChangelog
+      run: npm install -g auto-changelog
+
+    - name: Create changelog-template.hbs file
+      run: |
+        cat <<EOF > changelog-template.hbs
+        {{#each releases}}
+          {{#each merges}}
+            - {{message}} [`#{{id}}`]({{href}})
+          {{/each}}
+        {{/each}}
+        EOF
+
+    - name: Generating CHANGELOG.md
+      run: auto-changelog --template changelog-template.hbs --output CHANGELOG.md --starting-version 1.0.0
+
     - name: Checkout code
       uses: actions/checkout@v4
       with:
