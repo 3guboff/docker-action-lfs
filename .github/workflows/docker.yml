@@ -53,4 +53,8 @@ jobs:
       run: auto-changelog --template changelog-template.hbs --output CHANGELOG.md --starting-version 1.0.0
 
     - name: cat CHANGELOG.md
-      run: echo "version=$(cat CHANGELOG.md)" >> $GITHUB_OUTPUT
+      id: log
+      run: echo "changelog=$(cat CHANGELOG.md)" >> $GITHUB_OUTPUT
+
+    - name: Test output
+      run: echo ${{ steps.log.outputs.changelog }}
